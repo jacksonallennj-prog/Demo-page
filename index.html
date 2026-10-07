@@ -4,6 +4,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Web Development 101</title>
+    
+    <!-- Load Confetti Library -->
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+
     <style>
       body {
         background-color: #f4f7f6;
@@ -84,100 +88,21 @@
       /* Interactive section styling */
       .interactive-card {
         background-color: #ffffff;
-        padding: 20px;
-        border-radius: 8px;
+        padding: 25px;
+        border-radius: 12px;
         text-align: center;
-        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.08);
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
         margin-top: 30px;
       }
 
-      .action-btn {
+      /* Big Confetti Button */
+      .confetti-btn {
         background-color: #2563eb;
         color: white;
         border: none;
-        padding: 12px 24px;
-        font-size: 16px;
-        font-weight: bold;
-        border-radius: 6px;
-        cursor: pointer;
-        transition: transform 0.1s, background-color 0.2s;
-      }
-
-      .action-btn:active {
-        transform: scale(0.95);
-      }
-
-      #tip-text {
+        padding: 15px 30px;
         font-size: 18px;
         font-weight: bold;
-        color: #2563eb;
-        margin-top: 15px;
-        min-height: 27px;
-      }
-
-      .custom-link {
-        color: #2563eb;
-        font-weight: bold;
-        text-decoration: none;
-      }
-
-      .custom-link:hover {
-        text-decoration: underline;
-      }
-    </style>
-  </head>
-  <body>
-
-    <!-- Dark Mode Toggle -->
-    <div class="top-bar">
-      <button class="theme-btn" onclick="toggleDarkMode()">🌙 Dark Mode</button>
-    </div>
-
-    <h1>Welcome to Web Development 101</h1>
-    
-    <img src="https://images.unsplash.com/photo-1516321318423-f06f85e504b3?w=800" alt="Laptop on a desk" class="banner-image">
-
-    <p>In this class, we are learning how to build and design websites from scratch. We write HTML code, track changes using GitHub, and publish our projects live on the web with GitHub Pages!</p>
-    
-    <h2>What We Are Learning</h2>
-    <ul>
-      <li>HTML for page structure</li>
-      <li>CSS for colors, fonts, and layout design</li>
-      <li>JavaScript for interactive features</li>
-      <li>GitHub Pages for live web hosting</li>
-    </ul>
-
-    <!-- Interactive Button Box -->
-    <div class="interactive-card">
-      <h2>💡 Coding Tip Generator</h2>
-      <p>Click the button below to get a web development tip!</p>
-      <button class="action-btn" onclick="showRandomTip()">Click Me!</button>
-      <div id="tip-text"></div>
-    </div>
-
-    <p style="margin-top: 30px;">Check out free photos for web projects on <a href="https://unsplash.com" target="_blank" rel="noopener noreferrer" class="custom-link">Unsplash</a>!</p>
-
-    <!-- JavaScript code that makes the buttons work -->
-    <script>
-      // Array of tips to display
-      const tips = [
-        "HTML builds the skeleton of a website!",
-        "CSS makes your website look pretty with colors & fonts!",
-        "JavaScript adds fun interactive features like buttons!",
-        "Always remember to commit your changes on GitHub!",
-        "Test your site on both mobile and computer screens!"
-      ];
-
-      // Function to display a random tip when clicked
-      function showRandomTip() {
-        const randomIndex = Math.floor(Math.random() * tips.length);
-        document.getElementById("tip-text").innerText = tips[randomIndex];
-      }
-
-      // Function to switch between Light and Dark mode
-      function toggleDarkMode() {
-        document.body.classList.toggle("dark-mode");
-      }
-    </script>
-  </body>
-</html>
+        border-radius: 50px;
+        cursor: pointer;
+        box-shadow: 0 4px 10px rgba(37, 99, 235
