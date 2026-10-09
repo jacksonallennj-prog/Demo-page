@@ -177,54 +177,55 @@
     </style>
   </head>
   <body>
+<body> <!-- Start of visible content -->
 
     <!-- Dark Mode Toggle Button -->
-    <div class="top-bar">
-      <button class="theme-btn" onclick="toggleDarkMode()">🌙 Dark Mode</button>
-    </div>
+    <div class="top-bar"> <!-- Box for top button -->
+      <button class="theme-btn" onclick="toggleDarkMode()">🌙 Dark Mode</button> <!-- Button to switch light/dark mode -->
+    </div> <!-- End top box -->
 
-    <h1>Welcome to Web Development 101</h1>
+    <h1>Welcome to Web Development 101</h1> <!-- Main heading -->
     
-    <img src="https://images.unsplash.com/photo-1516321318423-f06f85e504b3?w=800" alt="Laptop on a desk" class="banner-image">
+    <img src="https://images.unsplash.com/photo-1516321318423-f06f85e504b3?w=800" alt="Laptop on a desk" class="banner-image"> <!-- Main picture -->
 
-    <p>In this class, we are learning how to build and design websites from scratch. We write HTML code, track changes using GitHub, and publish our projects live on the web with GitHub Pages!</p>
+    <p>In this class, we are learning how to build and design websites from scratch. We write HTML code, track changes using GitHub, and publish our projects live on the web with GitHub Pages!</p> <!-- Class description -->
     
-    <h2>What We Are Learning</h2>
-    <ul>
-      <li>HTML for page structure</li>
-      <li>CSS for colors, fonts, and layout design</li>
-      <li>JavaScript for interactive features & games</li>
-      <li>GitHub Pages for live web hosting</li>
-    </ul>
+    <h2>What We Are Learning</h2> <!-- Section title -->
+    <ul> <!-- Start of list -->
+      <li>HTML for page structure</li> <!-- List item 1 -->
+      <li>CSS for colors, fonts, and layout design</li> <!-- List item 2 -->
+      <li>JavaScript for interactive features & games</li> <!-- List item 3 -->
+      <li>GitHub Pages for live web hosting</li> <!-- List item 4 -->
+    </ul> <!-- End of list -->
 
     <!-- Confetti Explosion Card -->
-    <div class="interactive-card">
-      <h2>🎉 Celebrate Learning Code!</h2>
-      <p>Tap the button below for a celebration explosion!</p>
-      <button class="confetti-btn" onclick="fireConfetti()">🎉 CLICK FOR CONFETTI!</button>
-    </div>
+    <div class="interactive-card"> <!-- Box for confetti -->
+      <h2>🎉 Celebrate Learning Code!</h2> <!-- Card title -->
+      <p>Tap the button below for a celebration explosion!</p> <!-- Card text -->
+      <button class="confetti-btn" onclick="fireConfetti()">🎉 CLICK FOR CONFETTI!</button> <!-- Confetti button -->
+    </div> <!-- End confetti box -->
 
     <!-- Mini Game Section -->
-    <div class="game-card">
-      <h2>🐛 Catch the Coding Bug!</h2>
-      <p>Click the bug before time runs out!</p>
+    <div class="game-card"> <!-- Box for game -->
+      <h2>🐛 Catch the Coding Bug!</h2> <!-- Game title -->
+      <p>Click the bug before time runs out!</p> <!-- Game instructions -->
       
-      <div class="game-stats">
-        <span>Score: <span id="score">0</span></span>
-        <span>Time: <span id="timer">15</span>s</span>
-      </div>
+      <div class="game-stats"> <!-- Box for score and timer -->
+        <span>Score: <span id="score">0</span></span> <!-- Displays current score -->
+        <span>Time: <span id="timer">15</span>s</span> <!-- Displays remaining time -->
+      </div> <!-- End stats box -->
 
-      <div class="game-box" id="game-box">
-        <span class="bug" id="bug" onclick="catchBug()" style="display: none;">🐛</span>
-      </div>
+      <div class="game-box" id="game-box"> <!-- Game area -->
+        <span class="bug" id="bug" onclick="catchBug()" style="display: none;">🐛</span> <!-- Clickable bug -->
+      </div> <!-- End game area -->
 
-      <button class="start-btn" onclick="startGame()">Start Game</button>
-    </div>
+      <button class="start-btn" onclick="startGame()">Start Game</button> <!-- Start button -->
+    </div> <!-- End game box -->
 
-    <p style="margin-top: 30px;">Check out free photos for web projects on <a href="https://unsplash.com" target="_blank" rel="noopener noreferrer" class="custom-link">Unsplash</a>!</p>
+    <p style="margin-top: 30px;">Check out free photos for web projects on <a href="https://unsplash.com" target="_blank" rel="noopener noreferrer" class="custom-link">Unsplash</a>!</p> <!-- Link to Unsplash -->
 
     <!-- JavaScript Functions -->
-    <script>
+    <script> <!-- Start of script -->
       // Confetti Function
       function fireConfetti() {
         confetti({
@@ -290,6 +291,6 @@
         document.getElementById("score").innerText = score;
         moveBug();
       }
-    </script>
-  </body>
+    </script> <!-- End of script -->
+  </body> <!-- End of visible content -->
 </html>
