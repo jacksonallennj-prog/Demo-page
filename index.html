@@ -5,192 +5,17 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Web Development 101</title>
     
+    <!-- Link to external stylesheet -->
+    <link rel="stylesheet" href="styles.css">
+    
     <!-- Load Confetti Library -->
     <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
-
-    <style>
-      body {
-        background-color: #f4f7f6;
-        color: #333333;
-        font-family: Arial, sans-serif;
-        max-width: 650px;
-        margin: 40px auto;
-        padding: 0 20px 40px;
-        line-height: 1.6;
-        transition: background-color 0.3s, color 0.3s;
-      }
-
-      /* Dark mode styling */
-      body.dark-mode {
-        background-color: #1e293b;
-        color: #f1f5f9;
-      }
-
-      body.dark-mode ul, 
-      body.dark-mode .interactive-card,
-      body.dark-mode .game-card,
-      body.dark-mode .about-card {
-        background-color: #334155;
-        color: #f1f5f9;
-      }
-
-      body.dark-mode h1, body.dark-mode h2 {
-        color: #60a5fa;
-      }
-
-      /* Top bar for dark mode button */
-      .top-bar {
-        display: flex;
-        justify-content: flex-end;
-        margin-bottom: 10px;
-      }
-
-      .theme-btn {
-        background: #e2e8f0;
-        border: none;
-        padding: 8px 14px;
-        border-radius: 20px;
-        cursor: pointer;
-        font-size: 14px;
-        font-weight: bold;
-      }
-
-      h1 {
-        color: #1f2937;
-        text-align: center;
-        border-bottom: 2px solid #3b82f6;
-        padding-bottom: 10px;
-      }
-
-      .banner-image {
-        width: 100%;
-        max-width: 600px;
-        height: auto;
-        display: block;
-        margin: 20px auto;
-        border-radius: 8px;
-        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-      }
-
-      h2 {
-        color: #2563eb;
-        margin-top: 30px;
-      }
-
-      ul {
-        background-color: #ffffff;
-        padding: 20px 40px;
-        border-radius: 8px;
-        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.08);
-      }
-
-      li {
-        margin-bottom: 8px;
-      }
-
-      /* About Section Styling */
-      .about-card {
-        background-color: #ffffff;
-        padding: 20px;
-        border-radius: 8px;
-        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.08);
-        margin-top: 30px;
-      }
-
-      /* Confetti Card Styling */
-      .interactive-card {
-        background-color: #ffffff;
-        padding: 25px;
-        border-radius: 12px;
-        text-align: center;
-        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-        margin-top: 30px;
-      }
-
-      .confetti-btn {
-        background-color: #2563eb;
-        color: white;
-        border: none;
-        padding: 15px 30px;
-        font-size: 18px;
-        font-weight: bold;
-        border-radius: 50px;
-        cursor: pointer;
-        box-shadow: 0 4px 10px rgba(37, 99, 235, 0.3);
-        transition: transform 0.1s, background-color 0.2s;
-      }
-
-      .confetti-btn:hover {
-        background-color: #1d4ed8;
-      }
-
-      .confetti-btn:active {
-        transform: scale(0.92);
-      }
-
-      /* Game Card & Playing Area */
-      .game-card {
-        background-color: #ffffff;
-        padding: 20px;
-        border-radius: 12px;
-        text-align: center;
-        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-        margin-top: 30px;
-      }
-
-      .game-box {
-        position: relative;
-        width: 100%;
-        height: 250px;
-        background-color: #e2e8f0;
-        border-radius: 8px;
-        overflow: hidden;
-        margin: 15px 0;
-        border: 2px dashed #94a3b8;
-      }
-
-      .bug {
-        position: absolute;
-        font-size: 32px;
-        cursor: pointer;
-        user-select: none;
-        transition: top 0.2s ease, left 0.2s ease;
-      }
-
-      .game-stats {
-        display: flex;
-        justify-content: space-around;
-        font-size: 18px;
-        font-weight: bold;
-      }
-
-      .start-btn {
-        background-color: #10b981;
-        color: white;
-        border: none;
-        padding: 10px 20px;
-        font-size: 16px;
-        font-weight: bold;
-        border-radius: 6px;
-        cursor: pointer;
-      }
-
-      .custom-link {
-        color: #2563eb;
-        font-weight: bold;
-        text-decoration: none;
-      }
-
-      .custom-link:hover {
-        text-decoration: underline;
-      }
-    </style>
   </head>
   <body> <!-- Start of visible content -->
 
-    <!-- Dark Mode Toggle Button -->
+    <!-- Dark/Light Mode Toggle Button -->
     <div class="top-bar"> <!-- Box for top button -->
-      <button class="theme-btn" onclick="toggleDarkMode()">🌙 Dark Mode</button> <!-- Button to switch light/dark mode -->
+      <button class="theme-btn" onclick="toggleDarkMode()">🌙 Toggle Mode</button> <!-- Button to switch light/dark mode -->
     </div> <!-- End top box -->
 
     <h1>Welcome to Web Development 101</h1> <!-- Main heading -->
@@ -207,16 +32,16 @@
       <li>GitHub Pages for live web hosting</li> <!-- List item 4 -->
     </ul> <!-- End of list -->
 
-    <!-- New About Me Section -->
+    <!-- About Me Section -->
     <div class="about-card"> <!-- Box for about me section -->
       <h2>About Me</h2> <!-- Title for about me section -->
       <p>I like to play baseball and I love playing golf for fun. Some of my favorite things to do are hanging out with my friends, playing golf, and playing baseball.</p> <!-- Paragraph about sports and friends -->
-      <p>I also enjoy playing video games like </p>
+      <p>I also enjoy playing video games like:</p>
       <ol>
-        <li>college football 27</li>
-        <li>ready or not</li>
-        <li>2k</li>
-      </ol><!-- Paragraph about video games -->
+        <li>College Football 27</li>
+        <li>Ready or Not</li>
+        <li>2K</li>
+      </ol> <!-- Ordered list of video games -->
     </div> <!-- End about me box -->
 
     <!-- Confetti Explosion Card -->
@@ -256,9 +81,9 @@
         });
       }
 
-      // Dark Mode Toggle
+      // Dark/Light Mode Toggle
       function toggleDarkMode() {
-        document.body.classList.toggle("dark-mode");
+        document.body.classList.toggle("light-mode");
       }
 
       // Game Variables
