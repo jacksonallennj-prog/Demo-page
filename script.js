@@ -1,4 +1,4 @@
-// Confetti Function
+// Confetti Library Function
 function fireConfetti() {
   confetti({
     particleCount: 100,
@@ -13,7 +13,58 @@ function toggleDarkMode() {
 }
 
 // =========================================
-// Flappy Bird Arcade Game Logic
+// ASSIGNMENT STEPS LOGIC (Steps 2, 3, & 4)
+// =========================================
+
+// Step 2: Show Stylized Alert Popup on Click
+function showAlertMessage() {
+  const existingAlert = document.querySelector(".tuff-alert");
+  if (existingAlert) existingAlert.remove();
+
+  const popup = document.createElement("div");
+  popup.className = "tuff-alert";
+  popup.innerHTML = `
+    <h3 style="color: #38bdf8; margin-top:0;">⚠️ SYSTEM NOTICE</h3>
+    <p>Step 2: External JavaScript Click Event Active!</p>
+    <button class="confetti-btn" id="alert-close" style="padding: 8px 18px; font-size: 14px;">Acknowledge</button>
+  `;
+
+  document.body.appendChild(popup);
+
+  document.getElementById("alert-close").addEventListener("click", () => {
+    popup.classList.add("fade-out");
+    setTimeout(() => popup.remove(), 400);
+  });
+}
+
+// Step 3 & Step 4: User Input & Animated Text Update
+function updateUserText() {
+  const inputField = document.getElementById("user-input"); // Step 4: Get input element
+  const displayElement = document.getElementById("display-text"); // Step 3: Get target element
+  const userText = inputField.value.trim(); // Step 4: Read input string
+
+  if (userText !== "") {
+    let fullText = "YOU TYPED: \"" + userText + "\"";
+    displayElement.innerText = "";
+    inputField.value = ""; // Clear input box
+
+    // Cool character-by-character typing animation
+    let charIndex = 0;
+    const typingInterval = setInterval(() => {
+      displayElement.innerText += fullText[charIndex];
+      charIndex++;
+      if (charIndex >= fullText.length) {
+        clearInterval(typingInterval);
+      }
+    }, 40);
+
+  } else {
+    displayElement.innerText = "Please type something into the box first!";
+  }
+}
+
+// =========================================
+// FLAPPY BIRD ARCADE GAME LOGIC
 // =========================================
 let canvas, ctx;
 let birdY, birdVelocity, birdGravity, birdJump;
@@ -28,7 +79,6 @@ function initFlappyGame() {
   canvas = document.getElementById("flappy-canvas");
   ctx = canvas.getContext("2d");
 
-  // Reset Bird State
   birdY = canvas.height / 2;
   birdVelocity = 0;
   birdGravity = 0.45;
@@ -59,15 +109,15 @@ function gameLoop() {
 
   frameCount++;
   
-  // Clear Frame
+  // Clear Canvas
   ctx.fillStyle = "#030712";
   ctx.fillRect(0, 0, canvas.width, canvas.height);
 
-  // Apply Gravity to Bird
+  // Bird Physics
   birdVelocity += birdGravity;
   birdY += birdVelocity;
 
-  // Draw Bird (Yellow Glowing Circle with Beak)
+  // Draw Bird (Yellow Glowing Bird)
   ctx.save();
   ctx.shadowColor = "#facc15";
   ctx.shadowBlur = 10;
@@ -76,13 +126,13 @@ function gameLoop() {
   ctx.arc(80, birdY, 12, 0, Math.PI * 2);
   ctx.fill();
   
-  // Draw Eye
+  // Eye
   ctx.fillStyle = "#000000";
   ctx.beginPath();
   ctx.arc(84, birdY - 3, 2, 0, Math.PI * 2);
   ctx.fill();
 
-  // Draw Beak
+  // Beak
   ctx.fillStyle = "#f97316";
   ctx.beginPath();
   ctx.moveTo(90, birdY - 2);
@@ -92,7 +142,7 @@ function gameLoop() {
   ctx.fill();
   ctx.restore();
 
-  // Spawn Glowing Electric Blue Pipes
+  // Spawn Pipes
   if (frameCount % 90 === 0) {
     const gapHeight = 110;
     const minHeight = 40;
@@ -107,22 +157,19 @@ function gameLoop() {
     });
   }
 
-  // Move & Draw Pipes
+  // Draw Pipes & Check Score/Collisions
   for (let i = pipes.length - 1; i >= 0; i--) {
     pipes[i].x -= 2.5;
 
-    // Draw Top Pipe
     ctx.save();
     ctx.fillStyle = "#38bdf8";
     ctx.shadowColor = "#38bdf8";
     ctx.shadowBlur = 8;
     ctx.fillRect(pipes[i].x, 0, 48, pipes[i].top);
-
-    // Draw Bottom Pipe
     ctx.fillRect(pipes[i].x, canvas.height - pipes[i].bottom, 48, pipes[i].bottom);
     ctx.restore();
 
-    // Check Score
+    // Scoring
     if (!pipes[i].passed && pipes[i].x + 48 < 80) {
       pipes[i].passed = true;
       score++;
@@ -134,7 +181,7 @@ function gameLoop() {
       }
     }
 
-    // Check Collisions
+    // Collision Detection
     const birdRadius = 12;
     const birdX = 80;
 
@@ -147,13 +194,12 @@ function gameLoop() {
       return;
     }
 
-    // Remove Off-Screen Pipes
     if (pipes[i].x + 48 < 0) {
       pipes.splice(i, 1);
     }
   }
 
-  // Check Ground / Ceiling Collisions
+  // Boundary Collisions
   if (birdY + 12 >= canvas.height || birdY - 12 <= 0) {
     endGame();
     return;
@@ -166,7 +212,6 @@ function endGame() {
   gameRunning = false;
   cancelAnimationFrame(animationFrameId);
 
-  // Draw Game Over Banner
   ctx.fillStyle = "rgba(0, 0, 0, 0.75)";
   ctx.fillRect(0, 0, canvas.width, canvas.height);
 
@@ -184,7 +229,6 @@ function endGame() {
   }
 }
 
-// Draw initial start screen on canvas
 function drawStartScreen() {
   canvas = document.getElementById("flappy-canvas");
   ctx = canvas.getContext("2d");
@@ -202,19 +246,29 @@ function drawStartScreen() {
   ctx.fillText("Click or Press SPACE to Jump", canvas.width / 2, canvas.height / 2 + 20);
 }
 
-// Attach Event Listeners
+// Attach Event Handlers
 document.addEventListener("DOMContentLoaded", () => {
   document.getElementById("theme-btn").addEventListener("click", toggleDarkMode);
   document.getElementById("confetti-btn").addEventListener("click", fireConfetti);
   document.getElementById("start-btn").addEventListener("click", initFlappyGame);
+  
+  // Assignment Steps Handlers
+  document.getElementById("alert-btn").addEventListener("click", showAlertMessage);
+  document.getElementById("submit-btn").addEventListener("click", updateUserText);
+
+  // Submit on Enter key press
+  document.getElementById("user-input").addEventListener("keypress", (e) => {
+    if (e.key === "Enter") {
+      updateUserText();
+    }
+  });
 
   const canvasElement = document.getElementById("flappy-canvas");
   canvasElement.addEventListener("click", handleFlappyJump);
 
-  // Keyboard Spacebar Jump Control
   window.addEventListener("keydown", (e) => {
     if (e.code === "Space") {
-      e.preventDefault(); // Prevents page scrolling down when pressing Space
+      e.preventDefault();
       handleFlappyJump();
     }
   });
