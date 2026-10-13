@@ -14,7 +14,7 @@ body {
   transition: background-color 0.3s ease, color 0.3s ease;
 }
 
-/* Light Mode Toggle */
+/* Light Mode Override */
 body.light-mode {
   background-color: #f1f5f9;
   color: #0f172a;
@@ -148,7 +148,7 @@ ol li::marker {
   background: linear-gradient(135deg, #2563eb, #38bdf8);
   color: #ffffff;
   border: none;
-  padding: 18px 40px;
+  padding: 16px 36px;
   font-family: "Times New Roman", Times, serif;
   font-size: 17px;
   font-weight: bold;
@@ -156,7 +156,7 @@ ol li::marker {
   cursor: pointer;
   box-shadow: 0 4px 15px rgba(56, 189, 248, 0.4);
   transition: all 0.2s ease;
-  margin-top: 15px;
+  margin-top: 10px;
   display: inline-block;
   text-transform: uppercase;
 }
@@ -170,7 +170,7 @@ ol li::marker {
   transform: scale(0.95);
 }
 
-/* Flappy Bird Game Styling */
+/* Flappy Bird Game & Canvas Styling */
 .game-card {
   padding: 30px;
   border-color: #38bdf8;
@@ -234,4 +234,30 @@ ol li::marker {
   color: #ffffff;
   border-bottom-style: solid;
   border-color: #ffffff;
+}
+
+/* Stylized Popup Alert (Step 2) */
+.tuff-alert {
+  position: fixed;
+  top: 25px;
+  left: 50%;
+  transform: translateX(-50%);
+  background-color: #0f172a;
+  border: 2px solid #38bdf8;
+  padding: 20px 30px;
+  border-radius: 12px;
+  box-shadow: 0 10px 30px rgba(56, 189, 248, 0.5);
+  z-index: 1000;
+  text-align: center;
+  animation: slideDown 0.3s ease-out;
+}
+
+@keyframes slideDown {
+  from { top: -100px; opacity: 0; }
+  to { top: 25px; opacity: 1; }
+}
+
+.fade-out {
+  opacity: 0;
+  transition: opacity 0.4s ease;
 }
