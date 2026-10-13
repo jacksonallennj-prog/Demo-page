@@ -12,10 +12,6 @@ function toggleDarkMode() {
   document.body.classList.toggle("light-mode");
 }
 
-// =========================================
-// ASSIGNMENT STEPS LOGIC (Steps 2, 3, & 4)
-// =========================================
-
 // Step 2: Show Stylized Alert Popup on Click
 function showAlertMessage() {
   const existingAlert = document.querySelector(".tuff-alert");
@@ -37,30 +33,48 @@ function showAlertMessage() {
   });
 }
 
-// Step 3 & Step 4: User Input & Animated Text Updates
+// Step 3, 4, & 5: Input Handling with If/Else Logic Decision Making
 function updateUserText() {
-  const inputField = document.getElementById("user-input"); // Step 4: Get input element
-  const displayElement = document.getElementById("display-text"); // Step 3: Get target element
-  const userText = inputField.value.trim(); // Step 4: Read input string
+  const inputField = document.getElementById("user-input");
+  const displayElement = document.getElementById("display-text");
+  const userText = inputField.value.trim().toLowerCase();
 
-  if (userText !== "") {
-    let fullText = "YOU TYPED: \"" + userText + "\"";
-    displayElement.innerText = "";
-    inputField.value = ""; // Clear input box
+  let decisionResult = "";
 
-    // Cool character-by-character typing animation
-    let charIndex = 0;
-    const typingInterval = setInterval(() => {
-      displayElement.innerText += fullText[charIndex];
-      charIndex++;
-      if (charIndex >= fullText.length) {
-        clearInterval(typingInterval);
-      }
-    }, 40);
-
+  // Step 5: If / Else Logic Conditions
+  if (userText === "") {
+    decisionResult = "⚠️ Please type something in the box first!";
+  } else if (userText === "baseball") {
+    decisionResult = "⚾ Play ball! Baseball is one of your favorite sports!";
+    fireConfetti();
+  } else if (userText === "golf") {
+    decisionResult = "⛳ Hole in one! Golf is great for fun!";
+    fireConfetti();
   } else {
-    displayElement.innerText = "Please type something into the box first!";
+    decisionResult = "You entered: \"" + inputField.value.trim() + "\" - Cool custom input!";
   }
+
+  // Step 3: Change something on the page (Text update)
+  displayElement.innerText = decisionResult;
+  inputField.value = ""; // Clear input
+}
+
+// Step 6: Magic 8-Ball Answer Generator
+function askEightBall() {
+  const answers = [
+    "🎱 It is certain!",
+    "🎱 Without a doubt!",
+    "🎱 Reply hazy, try again later.",
+    "🎱 Ask again later...",
+    "🎱 Don't count on it.",
+    "🎱 My sources say no.",
+    "🎱 Outlook looks good!"
+  ];
+
+  const randomIndex = Math.floor(Math.random() * answers.length);
+  const resultElement = document.getElementById("eight-ball-result");
+  
+  resultElement.innerText = answers[randomIndex];
 }
 
 // =========================================
@@ -109,15 +123,12 @@ function gameLoop() {
 
   frameCount++;
   
-  // Clear Canvas
   ctx.fillStyle = "#030712";
   ctx.fillRect(0, 0, canvas.width, canvas.height);
 
-  // Bird Physics
   birdVelocity += birdGravity;
   birdY += birdVelocity;
 
-  // Draw Bird (Yellow Glowing Bird)
   ctx.save();
   ctx.shadowColor = "#facc15";
   ctx.shadowBlur = 10;
@@ -126,13 +137,11 @@ function gameLoop() {
   ctx.arc(80, birdY, 12, 0, Math.PI * 2);
   ctx.fill();
   
-  // Eye
   ctx.fillStyle = "#000000";
   ctx.beginPath();
   ctx.arc(84, birdY - 3, 2, 0, Math.PI * 2);
   ctx.fill();
 
-  // Beak
   ctx.fillStyle = "#f97316";
   ctx.beginPath();
   ctx.moveTo(90, birdY - 2);
@@ -142,7 +151,6 @@ function gameLoop() {
   ctx.fill();
   ctx.restore();
 
-  // Spawn Pipes
   if (frameCount % 90 === 0) {
     const gapHeight = 110;
     const minHeight = 40;
@@ -157,7 +165,6 @@ function gameLoop() {
     });
   }
 
-  // Draw Pipes & Check Score/Collisions
   for (let i = pipes.length - 1; i >= 0; i--) {
     pipes[i].x -= 2.5;
 
@@ -169,7 +176,6 @@ function gameLoop() {
     ctx.fillRect(pipes[i].x, canvas.height - pipes[i].bottom, 48, pipes[i].bottom);
     ctx.restore();
 
-    // Scoring
     if (!pipes[i].passed && pipes[i].x + 48 < 80) {
       pipes[i].passed = true;
       score++;
@@ -181,7 +187,6 @@ function gameLoop() {
       }
     }
 
-    // Collision Detection
     const birdRadius = 12;
     const birdX = 80;
 
@@ -199,7 +204,6 @@ function gameLoop() {
     }
   }
 
-  // Boundary Collisions
   if (birdY + 12 >= canvas.height || birdY - 12 <= 0) {
     endGame();
     return;
@@ -255,8 +259,8 @@ document.addEventListener("DOMContentLoaded", () => {
   // Assignment Steps Handlers
   document.getElementById("alert-btn").addEventListener("click", showAlertMessage);
   document.getElementById("submit-btn").addEventListener("click", updateUserText);
+  document.getElementById("eight-ball-btn").addEventListener("click", askEightBall);
 
-  // Submit on Enter key press
   document.getElementById("user-input").addEventListener("keypress", (e) => {
     if (e.key === "Enter") {
       updateUserText();
