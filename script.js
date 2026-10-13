@@ -37,7 +37,7 @@ function showAlertMessage() {
   });
 }
 
-// Step 3 & Step 4: User Input & Animated Text Update
+// Step 3 & Step 4: User Input & Animated Text Updates
 function updateUserText() {
   const inputField = document.getElementById("user-input"); // Step 4: Get input element
   const displayElement = document.getElementById("display-text"); // Step 3: Get target element
