@@ -44,6 +44,26 @@
       </ol>
     </div>
 
+    <!-- Assignment Steps 2, 3, & 4 Interactive Card -->
+    <div class="interactive-card">
+      <h2>✍️ Custom Message Generator</h2>
+      
+      <!-- Step 2: Button + Click Event (Alert Popup) -->
+      <button class="confetti-btn" id="alert-btn" style="margin-bottom: 25px;">📢 Show Alert Popup</button>
+      
+      <!-- Step 4: User Input -->
+      <div style="margin: 15px 0;">
+        <label for="user-input" style="display: block; font-weight: bold; margin-bottom: 10px;">Type a message below:</label>
+        <input type="text" id="user-input" placeholder="Type something cool here..." style="padding: 12px 16px; width: 85%; max-width: 320px; border-radius: 8px; border: 1px solid #38bdf8; background-color: #0f172a; color: #ffffff; font-family: 'Times New Roman', serif; font-size: 16px; outline: none;">
+      </div>
+
+      <!-- Step 3 & 4 Action Button -->
+      <button class="start-btn" id="submit-btn" style="margin-top: 10px;">Update Page Text</button>
+
+      <!-- Step 3: Dynamic Display Area -->
+      <p id="display-text" style="font-size: 1.2rem; font-weight: bold; color: #38bdf8; margin-top: 25px; min-height: 30px;">Your custom text will appear here!</p>
+    </div>
+
     <!-- Confetti Explosion Card -->
     <div class="interactive-card">
       <h2>🎉 Celebrate Learning Code!</h2>
@@ -52,7 +72,7 @@
     </div>
 
     <!-- Mini Game Section: Flappy Bird -->
-    <div class="game-card">
+    <div class="game-card" id="game-card">
       <h2>🐥 Flappy Bird Arcade</h2>
       <p>Click, tap, or press <strong>SPACE</strong> to fly and jump between the glowing pipes!</p>
       
@@ -70,7 +90,7 @@
 
     <p style="margin-top: 30px;">Check out free photos for web projects on <a href="https://unsplash.com" target="_blank" rel="noopener noreferrer" class="custom-link">Unsplash</a>!</p>
 
-    <!-- External JavaScript linked at the VERY BOTTOM of body -->
+    <!-- Step 1 Requirement: External JavaScript linked at the VERY BOTTOM of body -->
     <script src="script.js"></script>
   </body>
 </html>
