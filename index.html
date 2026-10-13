@@ -10,12 +10,15 @@
     
     <!-- Load Confetti Library -->
     <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+    
+    <!-- Link to external JavaScript file -->
+    <script src="script.js" defer></script>
   </head>
   <body> <!-- Start of visible content -->
 
     <!-- Dark/Light Mode Toggle Button -->
     <div class="top-bar"> <!-- Box for top button -->
-      <button class="theme-btn" onclick="toggleDarkMode()">🌙 Toggle Mode</button> <!-- Button to switch light/dark mode -->
+      <button class="theme-btn" id="theme-btn">🌙 Toggle Mode</button> <!-- Button to switch light/dark mode -->
     </div> <!-- End top box -->
 
     <h1>Welcome to Web Development 101</h1> <!-- Main heading -->
@@ -35,7 +38,7 @@
     <!-- About Me Section -->
     <div class="about-card"> <!-- Box for about me section -->
       <h2>About Me</h2> <!-- Title for about me section -->
-      <p>I like to play baseball and I love playing golf for fun. Some of my favorite things to do are hanging out with my friends, playing golf, and playing baseball.</p> <!-- Paragraph about sports and friends -->
+      <p>I like to play baseball ⚾ and I love playing golf ⛳ for fun. Some of my favorite things to do are hanging out with my friends, playing golf, and playing baseball.</p> <!-- Paragraph about sports and friends -->
       <p>I also enjoy playing video games like:</p>
       <ol>
         <li>College Football 27</li>
@@ -48,95 +51,27 @@
     <div class="interactive-card"> <!-- Box for confetti -->
       <h2>🎉 Celebrate Learning Code!</h2> <!-- Card title -->
       <p>Tap the button below for a celebration explosion!</p> <!-- Card text -->
-      <button class="confetti-btn" onclick="fireConfetti()">🎉 CLICK FOR CONFETTI!</button> <!-- Confetti button -->
+      <button class="confetti-btn" id="confetti-btn">🎉 CLICK FOR CONFETTI!</button> <!-- Confetti button -->
     </div> <!-- End confetti box -->
 
-    <!-- Mini Game Section -->
+    <!-- Mini Game Section: Flappy Bird -->
     <div class="game-card"> <!-- Box for game -->
-      <h2>🐛 Catch the Coding Bug!</h2> <!-- Game title -->
-      <p>Click the bug before time runs out!</p> <!-- Game instructions -->
+      <h2>🐥 Flappy Bird Arcade</h2> <!-- Game title -->
+      <p>Click, tap, or press <strong>SPACE</strong> to fly and jump between the glowing pipes!</p> <!-- Game instructions -->
       
       <div class="game-stats"> <!-- Box for score and timer -->
-        <span>Score: <span id="score">0</span></span> <!-- Displays current score -->
-        <span>Time: <span id="timer">15</span>s</span> <!-- Displays remaining time -->
+        <span>Score: <span id="game-score">0</span></span> <!-- Displays current score -->
+        <span>High Score: <span id="game-highscore">0</span></span> <!-- Displays high score -->
       </div> <!-- End stats box -->
 
-      <div class="game-box" id="game-box"> <!-- Game area -->
-        <span class="bug" id="bug" onclick="catchBug()" style="display: none;">🐛</span> <!-- Clickable bug -->
+      <div class="canvas-wrapper"> <!-- Game canvas area -->
+        <canvas id="flappy-canvas" width="400" height="400"></canvas> <!-- Canvas element for Flappy Bird game loop -->
       </div> <!-- End game area -->
 
-      <button class="start-btn" onclick="startGame()">Start Game</button> <!-- Start button -->
+      <button class="start-btn" id="start-btn">Start Game / Restart</button> <!-- Start/Restart button -->
     </div> <!-- End game box -->
 
     <p style="margin-top: 30px;">Check out free photos for web projects on <a href="https://unsplash.com" target="_blank" rel="noopener noreferrer" class="custom-link">Unsplash</a>!</p> <!-- Link to Unsplash -->
 
-    <!-- JavaScript Functions -->
-    <script> <!-- Start of script -->
-      // Confetti Function
-      function fireConfetti() {
-        confetti({
-          particleCount: 100,
-          spread: 70,
-          origin: { y: 0.6 }
-        });
-      }
-
-      // Dark/Light Mode Toggle
-      function toggleDarkMode() {
-        document.body.classList.toggle("light-mode");
-      }
-
-      // Game Variables
-      let score = 0;
-      let timeLeft = 15;
-      let gameInterval;
-      let timerInterval;
-
-      function startGame() {
-        score = 0;
-        timeLeft = 15;
-        document.getElementById("score").innerText = score;
-        document.getElementById("timer").innerText = timeLeft;
-        document.getElementById("bug").style.display = "block";
-
-        moveBug();
-
-        clearInterval(gameInterval);
-        clearInterval(timerInterval);
-
-        timerInterval = setInterval(() => {
-          timeLeft--;
-          document.getElementById("timer").innerText = timeLeft;
-          if (timeLeft <= 0) {
-            clearInterval(timerInterval);
-            document.getElementById("bug").style.display = "none";
-            alert("Game Over! Final Score: " + score);
-            if (score >= 5) {
-              fireConfetti();
-            }
-          }
-        }, 1000);
-      }
-
-      function moveBug() {
-        const box = document.getElementById("game-box");
-        const bug = document.getElementById("bug");
-
-        const maxX = box.clientWidth - 40;
-        const maxY = box.clientHeight - 40;
-
-        const randomX = Math.floor(Math.random() * maxX);
-        const randomY = Math.floor(Math.random() * maxY);
-
-        bug.style.left = randomX + "px";
-        bug.style.top = randomY + "px";
-      }
-
-      function catchBug() {
-        score++;
-        document.getElementById("score").innerText = score;
-        moveBug();
-      }
-    </script> <!-- End of script -->
   </body> <!-- End of visible content -->
 </html>
